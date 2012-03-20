@@ -1,0 +1,95 @@
+ATAC - ASCII to ASCII Converter
+
+This program is designed to make large section headers, words, letters,
+numbers, etc in source code or as part of a verbose script where it is 
+important for the user to easily see the beginnings of sections.  The 
+normal workflow when using it while programming is to invoke it from within 
+vim (or your text editor of choice) and dump its output into the file where 
+it is wanted.
+
+atac [-c commentprefix] "text to enlarge"
+
+-c commentprefix: 
+	To make commenting out this header easier, you can call atac with
+	a comment prefix to add to the beginning of every line.
+	-c will apply to all arguments after it, so it will typicall be the 
+	first argument to atac, with the comment prefix being the second.
+
+atac will print each argument as a single line, so if multiple words
+are wanted on a single line, be sure to escape the spaces between them,
+or else atac will treat each as a seperate argument to be enlarged.
+
+
+EEEEEEE  X     X     A     M     M  PPPP     L        EEEEEEE    SSS    
+E        X     X    A A    MM   MM  P   PP   L        E        SS   SS  
+E         X   X    A   A   M M M M  P    PP  L        E        S        
+E          X X    A     A  M  M  M  P   PP   L        E        SS       
+EEEE        X     AAAAAAA  M     M  PPPP     L        EEEE       SSS    
+E          X X    A     A  M     M  P        L        E             SS  
+E         X   X   A     A  M     M  P        L        E              S  
+E        X     X  A     A  M     M  P        L        E        SS   SS  
+EEEEEEE  X     X  A     A  M     M  P        LLLLLLL  EEEEEEE    SSS    
+
+(from command mode in vim):
+:r!atac test
+
+TTTTTTT  EEEEEEE    SSS    TTTTTTT  
+   T     E        SS   SS     T     
+   T     E        S           T     
+   T     E        SS          T     
+   T     EEEE       SSS       T     
+   T     E             SS     T     
+   T     E              S     T     
+   T     E        SS   SS     T     
+   T     EEEEEEE    SSS       T     
+
+
+(from command mode in vim):
+:r!atac -c // test
+
+// TTTTTTT  EEEEEEE    SSS    TTTTTTT  
+//    T     E        SS   SS     T     
+//    T     E        S           T     
+//    T     E        SS          T     
+//    T     EEEE       SSS       T     
+//    T     E             SS     T     
+//    T     E              S     T     
+//    T     E        SS   SS     T     
+//    T     EEEEEEE    SSS       T     
+
+(handling multiple words and arguments)
+$ atac "one line" multiple lines
+
+  OOO    N     N  EEEEEEE           L        IIIIIII  N     N  EEEEEEE  
+ O   O   NN    N  E                 L           I     NN    N  E        
+O     O  N N   N  E                 L           I     N N   N  E        
+O     O  N N   N  E                 L           I     N N   N  E        
+O     O  N  N  N  EEEE              L           I     N  N  N  EEEE     
+O     O  N   N N  E                 L           I     N   N N  E        
+O     O  N   N N  E                 L           I     N   N N  E        
+ O   O   N    NN  E                 L           I     N    NN  E        
+  OOO    N     N  EEEEEEE           LLLLLLL  IIIIIII  N     N  EEEEEEE  
+
+M     M  U     U  L        TTTTTTT  IIIIIII  PPPP     L        EEEEEEE  
+MM   MM  U     U  L           T        I     P   PP   L        E        
+M M M M  U     U  L           T        I     P    PP  L        E        
+M  M  M  U     U  L           T        I     P   PP   L        E        
+M     M  U     U  L           T        I     PPPP     L        EEEE     
+M     M  U     U  L           T        I     P        L        E        
+M     M  U     U  L           T        I     P        L        E        
+M     M   U   U   L           T        I     P        L        E        
+M     M    UUU    LLLLLLL     T     IIIIIII  P        LLLLLLL  EEEEEEE  
+
+L        IIIIIII  N     N  EEEEEEE    SSS    
+L           I     NN    N  E        SS   SS  
+L           I     N N   N  E        S        
+L           I     N N   N  E        SS       
+L           I     N  N  N  EEEE       SSS    
+L           I     N   N N  E             SS  
+L           I     N   N N  E              S  
+L           I     N    NN  E        SS   SS  
+LLLLLLL  IIIIIII  N     N  EEEEEEE    SSS    
+
+Send all comments, bugs, and fixes to: 
+	Kenneth Finnegan <KennethFinnegan2007@GMail.com>
+
